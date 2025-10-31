@@ -1,0 +1,220 @@
+@property --stop {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 90%;
+}
+@property --p-l {
+  syntax: '<percentage>';
+  inherits: false;
+  initial-value: 98.3%;
+}
+@property --p-c {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: .03433567473;
+}
+@property --p-h {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 260;
+}
+
+
+:root {
+  --primary: oklch(var(--p-l) var(--p-c) var(--p-h));
+  --bg-darkest: oklch(12% calc(var(--p-c) * 1.5) var(--p-h));
+  --bg-darker: oklch(15% calc(var(--p-c) * 1.5) var(--p-h));
+  --bg-dark: oklch(18% var(--p-c) var(--p-h));
+  --bg-medium: oklch(20% var(--p-c) var(--p-h));
+  --bg-light: oklch(25% var(--p-c) var(--p-h));
+  --text-high: oklch(99% var(--p-c) var(--p-h));
+  --text-muted: oklch(85% var(--p-c) var(--p-h));
+  --highlight-color: oklch(60% var(--p-c) var(--p-h));
+  --border-gradient-prominent: linear-gradient(
+      180deg,
+      var(--highlight-color) 0%,
+      var(--highlight-color) 0%,
+      var(--bg-light) 21%,
+      var(--bg-medium) 100%
+      );
+  --border-gradient-engraved: linear-gradient(
+    0deg,
+    var(--highlight-color) 0%,
+    var(--highlight-color) 0%,
+    var(--bg-darker) 21%,
+    var(--bg-darkest) 100%
+    );
+      
+  --shadow-prominent-neutral:
+    0 4px 6px -1px oklch(calc(var(--p-l) * 0.1) 0.045 var(--p-h)),
+    0 2px 4px 0 oklch(calc(var(--p-l) * 0.03) 0.045 var(--p-h));
+  --shadow-prominent-hover:
+    0 10px 15px -3px oklch(calc(var(--p-l) * 0.05) 0.045 var(--p-h)),
+    0 4px 6px -2px oklch(calc(var(--p-l) * 0.03) 0.045 var(--p-h));
+
+  --shadow-engraved:
+    inset 0 4px 6px -1px oklch(calc(var(--p-l) * 0.05) 0.045 var(--p-h)),
+    inset 0 2px 4px 0 oklch(calc(var(--p-l) * 0.02) 0.045 var(--p-h));
+}
+
+
+body.light {
+  --bg-darkest: oklch(85% calc(var(--p-c) * 1) var(--p-h));
+  --bg-darker: oklch(88% calc(var(--p-c) * 1) var(--p-h));
+  --bg-dark: oklch(90% var(--p-c) var(--p-h));
+  --bg-medium: oklch(95% var(--p-c) var(--p-h));
+  --bg-light: oklch(99% var(--p-c) var(--p-h));
+  --text-high: oklch(5% 0 0);
+  --text-muted: oklch(30% 0 0);
+  --highlight-color: oklch(95% var(--p-c) var(--p-h));
+  --border-gradient-prominent: linear-gradient(
+    180deg,
+    var(--highlight-color) 0%,
+    var(--highlight-color) 5%,
+    var(--bg-light) 15%,
+    var(--bg-medium) 100%
+  );
+  --border-gradient-engraved: linear-gradient(
+    0deg,
+    var(--highlight-color) 0%,
+    var(--highlight-color) 0%,
+    var(--bg-darker) 15%,
+    var(--bg-darkest) 100%
+  );
+
+  --shadow-prominent-neutral:
+    0 4px 6px -1px oklch(calc(var(--p-l) * 0.7) calc(var(--p-c) * (4 / 5)) var(--p-h)),
+    0 2px 4px 0 oklch(calc(var(--p-l) * 0.9) calc(var(--p-c) * (4 / 5)) var(--p-h));
+  --shadow-prominent-hover:
+    0 7px 15px -3px oklch(calc(var(--p-l) * 0.6) calc(var(--p-c) * (4 / 5)) var(--p-h)),
+    0 3px 6px -2px oklch(calc(var(--p-l) * 0.8) calc(var(--p-c) * (4 / 5)) var(--p-h));
+  --shadow-engraved:
+    inset 0 4px 6px -1px oklch(calc(var(--p-l) * 0.6) calc(var(--p-c) * (4 / 5)) var(--p-h)),
+    inset 0 2px 4px 0 oklch(calc(var(--p-l) * 0.8) calc(var(--p-c) * (4 / 5)) var(--p-h));
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-high);
+    background-color: var(--bg-dark);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.page-background {
+    background-color: var(--bg-dark);
+}
+
+.prominent {
+  --stop: 90%;
+  border: 1.5px solid transparent;
+  box-shadow: var(--shadow-prominent-neutral);
+  background:
+    linear-gradient(0deg, var(--bg-medium) var(--stop), var(--bg-light)) padding-box,
+    var(--border-gradient-prominent) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    --stop 0.25s ease 0.05s,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.engraved:not(.inactive) {
+  --stop: 90%;
+  box-shadow: var(--shadow-engraved);
+  border: 1.5px solid transparent;
+  background: 
+    linear-gradient(180deg, var(--bg-darkest) var(--stop), var(--bg-darker)) padding-box,
+    var(--border-gradient-engraved) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    --stop 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.engraved.inactive {
+  --stop: 90%;
+  box-shadow: var(--shadow-engraved);
+  border: 1.5px solid transparent;
+  background: 
+    linear-gradient(180deg, var(--bg-darkest) var(--stop), var(--bg-darker)) padding-box,
+    var(--border-gradient-engraved) border-box;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  transition:
+    --stop 0.2s ease 0.05s,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+/* paired with .prominent class */
+.prominent:hover {
+  --stop: 0%;
+  box-shadow: var(--shadow-prominent-hover);
+  transform: scale(1.003);
+}
+
+.engraved.hoverable:hover {
+  --stop: 0%;
+}
+/* pair prominent with 'child' *obligatory* and 'not-clickable' *optional* */
+.prominent.parent:active:not(.not-clickable):has(.child:not(:active)), .prominent.child:active:not(.not-clickable) {
+  --stop: 90%;
+  box-shadow: var(--shadow-prominent-neutral);  
+  transform: scale(0.99);
+}
+
+/* pair prominent with the classes 'child' *obligatory* and 'engrave' *optional* */
+.prominent.engrave:active:has(.child:not(:active)), .prominent.engrave:active  {
+  box-shadow: var(--shadow-engraved);
+  background: 
+    linear-gradient(180deg, var(--bg-darkest) var(--stop), var(--bg-darker)) padding-box,
+    var(--border-gradient-engraved) border-box;
+  transition-duration: 0.05s;
+}
+
+
+.content {
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+  color: var(--text-muted);
+}
+
+.card, .primary-action {
+  padding: 0.8rem 1.6rem;
+  border-radius: 20px;
+  color: var(--text-high);
+}
+
+.card {
+  padding: 30px;
+  border-radius: 50px;
+}
+
+
+
+button.primary-action {
+  user-select: none;
+  -webkit-user-select: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+h2, h3 {
+  color: var(--text-high);
+}
+
+.muted-text {
+  color: var(--text-muted);
+}
+
+.engraved.inactive {
+  --p-c: 0 !important;
+  color: var(--text-muted) !important;
+  font-weight: 400 !important;
+}
