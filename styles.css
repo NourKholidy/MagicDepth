@@ -19,7 +19,9 @@
   initial-value: 260;
 }
 
-
+* {
+  font-family: "Bricolage Grotesque", sans-serif;
+}
 :root {
   --primary: oklch(var(--p-l) var(--p-c) var(--p-h));
   --bg-darkest: oklch(12% calc(var(--p-c) * 1.5) var(--p-h));
@@ -94,7 +96,6 @@ body.light {
 }
 
 body {
-    font-family: sans-serif;
     color: var(--text-high);
     background-color: var(--bg-dark);
     margin: 0;
@@ -207,7 +208,7 @@ body {
 }
 
 .card {
-  padding: 30px;
+  padding: 35px;
   border-radius: 50px;
 }
 
@@ -222,10 +223,17 @@ button.primary-action {
 
 h2, h3 {
   color: var(--text-high);
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0;
+  margin-block: 0rem;
+  line-height: 1;
 }
 
 .muted-text {
   color: var(--text-muted);
+  font-size: 1rem;
+  font-weight: 200;
 }
 
 .engraved.inactive {
