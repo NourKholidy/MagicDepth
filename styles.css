@@ -120,7 +120,12 @@ body {
     box-shadow 0.2s ease,
     transform 0.2s ease;
 }
-
+.prominent {
+  -webkit-transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+  overflow: hidden; /* enforces proper clipping on rounded corners */
+}
 .engraved:not(.inactive) {
   --stop: 90%;
   box-shadow: var(--shadow-engraved);
@@ -164,6 +169,7 @@ body {
 /* pair prominent with 'child' *obligatory* and 'not-clickable' *optional* */
 .prominent.parent:active:not(.not-clickable):has(.child:not(:active)), .prominent.child:active:not(.not-clickable) {
   --stop: 90%;
+  transition: --stop 0.1s ease 0s;
   box-shadow: var(--shadow-prominent-neutral);  
   transform: scale(0.99);
 }
