@@ -115,17 +115,16 @@ body {
     var(--border-gradient-prominent) border-box;
   background-origin: border-box;
   background-clip: padding-box, border-box;
-  transition:
-    --stop 0.25s ease 0.05s,
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
-}
-.prominent {
   -webkit-transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
-  overflow: hidden; /* enforces proper clipping on rounded corners */
+  overflow: hidden;
+  transition:
+    --stop 0.15s ease 0s,
+    box-shadow 0.24s ease,
+    transform 0.24s ease;
 }
+
 .engraved:not(.inactive) {
   --stop: 90%;
   box-shadow: var(--shadow-engraved);
@@ -161,6 +160,10 @@ body {
   --stop: 0%;
   box-shadow: var(--shadow-prominent-hover);
   transform: scale(1.003);
+  transition:
+    --stop 0.28s ease 0.02s,
+    box-shadow 0.24s ease,
+    transform 0.24s ease;
 }
 
 .engraved.hoverable:hover {
@@ -169,7 +172,11 @@ body {
 /* pair prominent with 'child' *obligatory* and 'not-clickable' *optional* */
 .prominent.parent:active:not(.not-clickable):has(.child:not(:active)), .prominent.child:active:not(.not-clickable) {
   --stop: 90%;
-  transition: --stop 0.1s ease 0s;
+  
+  transition:
+    --stop 0.12s ease 0s,
+    box-shadow 0.24s ease,
+    transform 0.24s ease;
   box-shadow: var(--shadow-prominent-neutral);  
   transform: scale(0.99);
 }
@@ -180,9 +187,11 @@ body {
   background: 
     linear-gradient(180deg, var(--bg-darkest) var(--stop), var(--bg-darker)) padding-box,
     var(--border-gradient-engraved) border-box;
-  transition-duration: 0.05s;
+  transition:
+    --stop 0.12s ease 0s,
+    box-shadow 0.24s ease,
+    transform 0.24s ease;
 }
-
 
 .content {
   padding: 20px;
